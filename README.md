@@ -1,6 +1,6 @@
 This is a web app which allow you to predict the future price of bitcoin.
 
-
+Working of the web app: 
 
 This is the homepage of the application, on this you have to choose for which day forecast you want.
 
