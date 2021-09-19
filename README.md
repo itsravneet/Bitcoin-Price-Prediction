@@ -9,7 +9,7 @@ This is the homepage of the application, on this you have to choose for which da
 
 
 
-This is the result after on the predict button
+This is the result after clicking the predict button
 
 
 ![alt text](https://github.com/itsravneet/Bitcoin-Price-Prediction/blob/main/images/ss2.png?raw=true)
