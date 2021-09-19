@@ -15,7 +15,6 @@ chardet==4.0.0
 clang==5.0
 click==8.0.1
 colorama==0.4.4
-dataclasses==0.8
 decorator==5.0.9
 defusedxml==0.7.1
 entrypoints==0.3
