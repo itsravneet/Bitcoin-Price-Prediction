@@ -15,7 +15,10 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
-	day = request.form['prediction']
+	try:
+		day = request.form['prediction']
+	except:
+		return render_template('index.html',prediction_text="Please choose a forecast day!")
 	model=pickle.load(open("randomforestregressor_"+str(day)+".sav", 'rb'))
 	source=requests.get('https://bitinfocharts.com/bitcoin/').text
 	soup=BeautifulSoup(source,'lxml')
