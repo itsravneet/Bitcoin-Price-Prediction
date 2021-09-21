@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Predict Bitcoin Price</title>
+
+<style type="text/css">
+body{
+background-color:#151728;
+ background-size:10%;
+ animation: bgScroll 20s linear infinite;
+ color: white;
+ font-family: Trebuchet MS;
+}
+
+@keyframes bgScroll {
+ 0% {
+   background-position : 0px 0px
+ }
+ 100% {
+   background-position : 0px -808px
+ }
+}
+
+button {
+ background-color: #f4511e;
+ border: none;
+ color: white;
+ padding: 15px 32px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+ opacity: 0.9;
+   transition: 0.3s;
+ cursor:  pointer;
+ box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+button:hover {
+ opacity: 1;
+ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.predict{
+    font-size: 22px;
+
+}
+
+pre {tab-size: 16;}
+</style>
+</head>
+<body>
+<div class='login'>   
+<br><br>
+<h1><center>Want to know what will be bitcoin price in future?</center></h1>
+<br>
+<br>
+<center><h2>Choose which day forecast: </h2></center>
+
+<form action="{{ url_for('predict')}}", method="post">
+ <center>
+     <input type="radio" id="1" name="prediction" value="1">1&emsp;&emsp;
+     <input type="radio" id="7" name="prediction" value="7">7&emsp;&emsp;
+     <input type="radio" id="30" name="prediction" value="30">30&emsp;&emsp;
+     <input type="radio" id="90" name="prediction" value="90">90&emsp;&emsp;
+     <br>
+     <br>
+     <button type="submit", class="btn btn-primary btn-block btn-large">Predict</button>
+     <br><br><br><br>
+     <center class="predict">{{ prediction_text }}</center>
+     <br>
+     <br>
+   <center><img src="{{ url_for('visualize') }}"></center>
+ </center>
+</form>
+
+</div>
+</body>
+</html>
+
+
+
+
+
