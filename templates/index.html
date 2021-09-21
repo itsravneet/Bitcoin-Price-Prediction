@@ -6,8 +6,7 @@
 
 <style type="text/css">
 body{
- background-image: url('data:image/svg+xml,%3Csvg width="52" height="26" viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.4"%3E%3Cpath d="M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z" /%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
- background-color:#151728;
+background-color:#151728;
  background-size:10%;
  animation: bgScroll 20s linear infinite;
  color: white;
@@ -54,11 +53,10 @@ pre {tab-size: 16;}
 </head>
 <body>
 <div class='login'>   
-<br><br><br><br><br> 
+<br><br>
 <h1><center>Want to know what will be bitcoin price in future?</center></h1>
 <br>
-<br><br><br><br>
-
+<br>
 <center><h2>Choose which day forecast: </h2></center>
 
 <form action="{{ url_for('predict')}}", method="post">
@@ -71,7 +69,6 @@ pre {tab-size: 16;}
 	 <br>
 	 <button type="submit", class="btn btn-primary btn-block btn-large">Predict</button>
 	 <br><br><br><br>
-	 <center class="predict">{{ prediction_text }}</center>
  </center>
 </form>
 
