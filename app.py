@@ -165,10 +165,10 @@ def visualize():
 	global future
 	fig,ax=plt.subplots(figsize=(6,4))
 	ax=plt.axes()
-	ax.set_facecolor("grey")
 	plt.plot(true,label='True')
 	plt.plot(future,label='Future')
 	plt.legend()
+	plt.grid()
 	canvas=FigureCanvas(fig)
 	img=io.BytesIO()
 	fig.savefig(img)
