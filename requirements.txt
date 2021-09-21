@@ -4,12 +4,13 @@ Flask==2.0.1
 google-auth==1.29.0
 google-auth-oauthlib==0.4.4
 gunicorn==20.1.0
-h5py==3.1.0
+itsdangerous=1.1.0
 Jinja2==2.11.3
+MarkupSafe=1.1.1
+Werkzeug=0.15.5
 keras==2.6.0
 lxml==4.6.3
 matplotlib==3.3.4
-notebook==6.4.0
 numpy==1.19.5
 oauthlib==3.1.0
 pandas==0.25.3
