@@ -15,8 +15,6 @@ from pickle import load
 import numpy as np
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 import pandas as pd
-import csv 
-from statsmodels.tsa.arima.model import ARIMA
 import matplotlib.pyplot as plt 
 
 app=Flask(__name__)
@@ -108,7 +106,6 @@ def predict():
 	coin_merged_df_list = []
 
 	for coin_dict in coin_dict_list:
-	  print(f"Processing - {coin_dict['full_name']}")
 	  coin_df_list = []
 	  for page in coin_dict['scrape_details']:
 	    try:
@@ -118,7 +115,6 @@ def predict():
 	      empty_df['full_name'] = coin_dict['full_name']
 	      empty_df['coin'] = coin_dict['coin']
 	      coin_df_list.append(pd.DataFrame)
-	      print(f"Error with {coin_dict['full_name']}")
 
 	  coin_df = merge_dfs(coin_df_list)
 	  coin_df['full_name'] = coin_dict['full_name']
@@ -143,21 +139,31 @@ def predict():
 	price=[]
 	for i in prices:
 	  price.append(float(i))
-	print(price)
-	
+
+	predicted_values=[]
+	days=[1,7,30,90]
+	for i in days:
+		if(i==day):
+			predicted_values.append(next_day_price)
+		else:
+			model=pickle.load(open("randomforestregressor_"+str(i)+".sav", 'rb'))
+			predicted_values.append(model.predict(test_point.reshape(1,-1)))
 	#getting the last 10 days values
-	price=price[-10:]
+	price=price[-50:]
 	price=pd.DataFrame(price)
-	price.index=range(10)
-	predicted=[price[-1:],next_day_price]
-	predicted=pd.DataFrame(predicted)
-	predicted.index=range(9,11)	
+	price.index=range(50)
+	predicted_values.insert(0,price[-1:])
+	predicted_values=pd.DataFrame(predicted_values)
+	predicted_values.index=(49,50,56,79,139)
+	print(price)
+	print(predicted_values)	
 	global true
 	global future
 	true=price
-	future=predicted
+	future=predicted_values
 
 	return render_template('predict.html',prediction_text="Today Price: "+str(priceUSD)+"      | "+str(day)+"th day Price: "+str(next_day_price[0]))
+
 
 @app.route('/visualize')
 def visualize():
