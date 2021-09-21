@@ -84,7 +84,6 @@ pyparsing==2.4.7
 pyrsistent==0.17.3
 python-dateutil==2.8.1
 pytz==2021.1
-pypiwin32==223
 pyzmq==22.1.0
 requests==2.25.1
 requests-oauthlib==1.3.0
