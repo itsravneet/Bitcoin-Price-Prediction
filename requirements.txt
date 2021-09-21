@@ -20,3 +20,6 @@ scipy>=0.15.1
 scikit-learn>=0.18
 matplotlib>=1.4.3
 pandas>=0.19
+ipykernel==5.5.5
+ipython==7.16.1
+ipython-genutils==0.2.0
