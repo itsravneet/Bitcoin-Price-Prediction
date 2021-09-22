@@ -183,7 +183,7 @@ def visualize():
 	ax=plt.axes()
 	forecast_price=forecast_price[0]	
 	print("forecast price",forecast_price,"forecast_day",forecast_day)
-	#ax.annotate(text='Forecast Day', xy=(forecast_day, forecast_price), xytext=(forecast_day+10, forecast_price-10) ,arrowprops= dict(arrowstyle="->", connectionstyle="angle3,angleA=0,angleB=90"))
+	ax.annotate(text='Forecast Day', xy=(forecast_day, forecast_price), xytext=(forecast_day+10, forecast_price-10) ,arrowprops= dict(arrowstyle="->", connectionstyle="angle3,angleA=0,angleB=90"))
 	ax.plot(true,label='True')
 	ax.plot(future,label='Future')
 	plt.xlabel('Days')
