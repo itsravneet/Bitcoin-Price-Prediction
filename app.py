@@ -160,6 +160,8 @@ def predict():
 	predicted_values.index=(-1,0,1,7,30,90)
 	global future
 	global true
+	global forecast_day
+	global forecast_price
 	true=price
 	future=predicted_values
 	forecast_day=day
