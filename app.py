@@ -20,14 +20,16 @@ import matplotlib.pyplot as plt
 app=Flask(__name__)
 true=0
 future=0
-
+forecast_day=0
+forecast_price=0
 @app.route('/')
 def home():
 	return 	render_template('index.html')
 
 @app.route('/predict',methods=['POST'])
 def predict():
-
+	global forecast_day
+	global forecast_price
 	#getting day forecast value from html toggle
 	try:
 		day = request.form['prediction']
@@ -144,24 +146,24 @@ def predict():
 	days=[1,7,30,90]
 	for i in days:
 		if(i==day):
-			predicted_values.append(next_day_price)
+			predicted_values.append(next_day_price[0])
 		else:
 			model=pickle.load(open("randomforestregressor_"+str(i)+".sav", 'rb'))
-			predicted_values.append(model.predict(test_point.reshape(1,-1)))
+			predicted_values.append(model.predict(test_point.reshape(1,-1))[0])
 	#getting the last 10 days values
 	price=price[-50:]
+	predicted_values.insert(0,priceUSD)
+	predicted_values.insert(0,price[-1])
 	price=pd.DataFrame(price)
-	price.index=range(50)
-	predicted_values.insert(0,price[-1:])
+	price.index=range(-50,0)
 	predicted_values=pd.DataFrame(predicted_values)
-	predicted_values.index=(49,50,56,79,139)
-	print(price)
-	print(predicted_values)	
-	global true
+	predicted_values.index=(-1,0,1,7,30,90)
 	global future
+	global true
 	true=price
 	future=predicted_values
-
+	forecast_day=day
+	forecast_price=next_day_price
 	return render_template('predict.html',prediction_text="Today Price: "+str(priceUSD)+"      | "+str(day)+"th day Price: "+str(next_day_price[0]))
 
 
@@ -169,10 +171,21 @@ def predict():
 def visualize():
 	global true
 	global future
+	global forecast_day
+	global forecast_price
+	print("future:")
+	print(future)
+	print("true:")
+	print(true)
 	fig,ax=plt.subplots(figsize=(6,4))
 	ax=plt.axes()
-	plt.plot(true,label='True')
-	plt.plot(future,label='Future')
+	forecast_price=forecast_price[0]	
+	print("forecast price",forecast_price,"forecast_day",forecast_day)
+	#ax.annotate(text='Forecast Day', xy=(forecast_day, forecast_price), xytext=(forecast_day+10, forecast_price-10) ,arrowprops= dict(arrowstyle="->", connectionstyle="angle3,angleA=0,angleB=90"))
+	ax.plot(true,label='True')
+	ax.plot(future,label='Future')
+	plt.xlabel('Days')
+	plt.ylabel('PriceUSD')
 	plt.legend()
 	plt.grid()
 	canvas=FigureCanvas(fig)
