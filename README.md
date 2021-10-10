@@ -1,3 +1,5 @@
+Link to App:  https://bitcoin-predict.herokuapp.com/
+
 This is a web app which allow you to predict the future price of bitcoin.
 
 Working of the web app: 
